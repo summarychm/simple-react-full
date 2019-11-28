@@ -5,7 +5,7 @@ import Counter from './Component/Counter';
 import actions from './store/actions/counter';
 
 function App(props) {
-  const { number, add, minus } = props;
+  const { number, add, minus, thunkAdd } = props;
   return (
     <div>
       <p>Hello world!</p>
@@ -15,6 +15,7 @@ function App(props) {
           add({ payload: 5 });
         }}
         minus={minus}
+        thunkAdd={() => thunkAdd(1000)}
       />
     </div>
   );

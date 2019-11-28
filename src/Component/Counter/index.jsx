@@ -1,7 +1,7 @@
 import React from 'react';
 
 export default function Counter(props) {
-  const { number, add, minus } = props;
+  const { number, add, minus, thunkAdd } = props;
   return (
     <div>
       <p>{number}</p>
@@ -10,6 +10,9 @@ export default function Counter(props) {
       </button>
       <button type="button" onClick={minus}>
         Minus
+      </button>
+      <button type="button" onClick={thunkAdd}>
+        thunk-Add
       </button>
     </div>
   );

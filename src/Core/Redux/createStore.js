@@ -1,5 +1,6 @@
 import { isPlainObject } from './utils';
-const initReduxType = Symbol.for('REDUX.INIT');
+const initReduxType = 'REDUX.INIT';
+// const initReduxType = Symbol.for('REDUX.INIT');
 export default function createStore(reducer, preloadedState, enhancer) {
   if (typeof reducer !== 'function') throw new Error('reducer必须是一个function!');
   // 兼容未传递preloadedState而传递enhancer的情况
