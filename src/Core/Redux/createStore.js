@@ -1,3 +1,4 @@
+import { isPlainObject } from './utils';
 const initReduxType = Symbol.for('REDUX.INIT');
 export default function createStore(reducer, preloadedState, enhancer) {
   if (typeof reducer !== 'function') throw new Error('reducer必须是一个function!');
@@ -28,6 +29,10 @@ export default function createStore(reducer, preloadedState, enhancer) {
     };
   }
   function dispatch(action) {
+    if (!isPlainObject(action)) {
+      throw new Error('action是一个纯对象,如果想进行异步操作请使用中间件');
+    }
+    if (typeof action.type === 'undefined') throw new Error(`动作不能一个值为undefined的type属性`);
     currentState = reducer(currentState, action);
     // 批量派发监听
     currentListeners.forEach((listener) => listener());
