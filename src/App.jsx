@@ -7,7 +7,7 @@ window.store = store;
 
 const { getState, subscribe, dispatch } = store;
 function App() {
-  const { number } = store.getState();
+  const { number } = store.getState().counter;
   const add = () => {
     dispatch(types.add());
   };
@@ -15,7 +15,7 @@ function App() {
     dispatch(types.minus());
   };
   subscribe(() => {
-    console.log('store.getState()', getState().number);
+    console.log('store.getState()', getState().counter.number);
   });
   return (
     <div>

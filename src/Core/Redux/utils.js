@@ -5,6 +5,6 @@ export function isPlainObject(obj) {
   while (Object.getPrototypeOf(proto) !== null) {
     proto = Object.getPrototypeOf(proto);
   }
-  return Object.getPrototypeOf(obj) === obj;
+  return Object.getPrototypeOf(obj) === proto;
   // return Object.getPrototypeOf(obj) === Object.prototype;
 }
