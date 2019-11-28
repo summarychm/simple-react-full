@@ -1,6 +1,8 @@
 import React from 'react';
+import { connect } from '../../Core/react-redux';
+import actions from '../../store/actions/counter';
 
-export default function Counter(props) {
+function Counter(props) {
   const { number, add, minus, thunkAdd } = props;
   return (
     <div>
@@ -17,3 +19,17 @@ export default function Counter(props) {
     </div>
   );
 }
+
+const mapStateToProps = (state) => state.counter;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    add: () => {
+      dispatch(actions.add({ payload: 5 }));
+    },
+    minus: () => dispatch(actions.minus()),
+    thunkAdd: () => {
+      dispatch(actions.thunkAdd(1000));
+    },
+  };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(Counter);
