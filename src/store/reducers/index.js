@@ -1,5 +1,5 @@
 import counter from './counter';
-import { combineReducers } from '../../Core/Redux';
+import { combineReducers } from '../../Core/redux';
 export default combineReducers({
   counter,
 });

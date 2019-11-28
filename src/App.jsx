@@ -9,7 +9,13 @@ function App(props) {
   return (
     <div>
       <p>Hello world!</p>
-      <Counter number={number} add={add} minus={minus} />
+      <Counter
+        number={number}
+        add={() => {
+          add({ payload: 5 });
+        }}
+        minus={minus}
+      />
     </div>
   );
 }

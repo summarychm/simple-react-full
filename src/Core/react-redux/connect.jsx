@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { ReactReduxContext } from './context';
-import { bindActionCreators } from '../Redux';
+import { bindActionCreators } from '../redux';
 
 function isFunction(obj) {
   return typeof obj === 'function';

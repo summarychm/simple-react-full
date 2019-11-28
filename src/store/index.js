@@ -1,4 +1,4 @@
-import { applyMiddleware, createStore } from '../Core/Redux';
+import { applyMiddleware, createStore } from '../Core/redux';
 import reduxLogger from '../Core/redux-logger';
 import reducer from './reducers';
 
