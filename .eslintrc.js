@@ -22,6 +22,7 @@ module.exports = {
     'no-param-reassign': 0, // 禁止给参数重新赋值
     'arrow-body-style': 0, // 箭头函数在多层嵌套时,可读性不高
     'no-unused-vars': 0, // 可以存在未使用的变量
+    'space-before-function-paren': 0, // 函数名空格校验
     'object-curly-newline': 0, // 尽量使用一行导出
     'no-restricted-syntax': 0, // 使用forOf+Object.entries语法
     'operator-linebreak': [2, 'after'], // 换行时运算符放到行尾

@@ -1,17 +1,16 @@
 import React from 'react';
 import { Provider } from './Core/react-redux';
+import { HashRouter } from './Core/react-router-dom';
+
 import store from './store';
+import PageRouters from './routers';
 
-import Counter from './Component/Counter';
-
-function App(props) {
+export default function App(props) {
   return (
     <Provider store={store}>
-      <div>
-        <p>Hello world!</p>
-        <Counter />
-      </div>
+      <HashRouter>
+        <PageRouters />
+      </HashRouter>
     </Provider>
   );
 }
-export default App;
