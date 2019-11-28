@@ -1,22 +1,11 @@
 import React from 'react';
+import { connect } from './Core/react-redux';
+
 import Counter from './Component/Counter';
+import actions from './store/actions/counter';
 
-import store from './store';
-import types from './store/actions/counter';
-window.store = store;
-
-const { getState, subscribe, dispatch } = store;
-function App() {
-  const { number } = store.getState().counter;
-  const add = () => {
-    dispatch(types.add());
-  };
-  const minus = () => {
-    dispatch(types.minus());
-  };
-  subscribe(() => {
-    console.log('store.getState()', getState().counter.number);
-  });
+function App(props) {
+  const { number, add, minus } = props;
   return (
     <div>
       <p>Hello world!</p>
@@ -24,5 +13,6 @@ function App() {
     </div>
   );
 }
-
-export default App;
+const mapStateToProps = (state) => state.counter;
+const mapDispatchToProps = actions;
+export default connect(mapStateToProps, mapDispatchToProps)(App);

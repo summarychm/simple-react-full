@@ -26,5 +26,7 @@ module.exports = {
     'import/newline-after-import': 0, // 处理import *的情况
     'import/prefer-default-export': 0, // 可以使用export导出
     'react/prop-types': 0, // prop-types改为可选
+    'react/no-unused-state': 0, // 屏蔽未使用state导致的报错
+    'react/jsx-props-no-spreading': 0, // 使用展开运算符批量传递props
   },
 };
