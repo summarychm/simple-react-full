@@ -19,6 +19,10 @@ module.exports = {
   plugins: ['react'],
   rules: {
     'no-param-reassign': 0,
-    'react/prop-types': 0,
+    quotes: 0, // 可以使用双引号
+    'no-console': 0, // 可以使用console
+    'import/newline-after-import': 0, // 处理import *的情况
+    'import/prefer-default-export': 0, // 可以使用export导出
+    'react/prop-types': 0, // prop-types改为可选
   },
 };
