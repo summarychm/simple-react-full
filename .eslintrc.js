@@ -19,6 +19,7 @@ module.exports = {
   plugins: ['react'],
   rules: {
     'no-param-reassign': 0,
+    'object-curly-newline': 0, // 尽量使用一行导出
     'no-restricted-syntax': 0, // 使用forOf+Object.entries语法
     quotes: 0, // 可以使用双引号
     'no-console': 0, // 可以使用console

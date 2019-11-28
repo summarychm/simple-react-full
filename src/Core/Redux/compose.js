@@ -11,7 +11,7 @@ export default function compose(...fns) {
 //   if (!fns.length) return (args) => args;
 //   return (...args) => {
 //     let last = fns.pop();
-//     let val = last(...args);
+//     let val = last(...args);// 接收额外参数
 //     return fns.reduceRight((pre, cur) => {
 //       return cur(pre);
 //     }, val);

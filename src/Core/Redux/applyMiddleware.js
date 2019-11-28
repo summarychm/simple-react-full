@@ -11,12 +11,12 @@ export default function applyMiddleware(...middlewares) {
     // 提供给Middleware的工具对象
     // dispatch采用闭包的形式(懒执行),在调用时才获取增强后的dispatchFn
     const middlewareAPI = {
-      getStore: store.getStore,
+      getState: store.getState,
       dispatch: (...parmas) => dispatchFn(...parmas),
     };
-    // 初始化中间件,提供store和增强后的dispatch
+    // 初始化中间件,解开middleware三层嵌套的第一层
     const chain = middlewares.map((middleware) => middleware(middlewareAPI));
-    //! 增强dispatch
+    //! 增强dispatch(由右向左依次包装),解开middleware三层嵌套的第二层
     dispatchFn = compose(...chain)(store.dispatch);
 
     return { ...store, dispatch: dispatchFn };
