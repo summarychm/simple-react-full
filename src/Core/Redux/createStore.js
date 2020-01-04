@@ -1,6 +1,7 @@
 import { isPlainObject } from './utils';
-const initReduxType = 'REDUX.INIT';
-// const initReduxType = Symbol.for('REDUX.INIT');
+// const initReduxType = 'REDUX.INIT';
+const initReduxType = Symbol.for('REDUX.INIT');
+
 export default function createStore(reducer, preloadedState, enhancer) {
   if (typeof reducer !== 'function') throw new Error('reducer必须是一个function!');
   // 兼容未传递preloadedState而传递enhancer的情况
@@ -19,9 +20,8 @@ export default function createStore(reducer, preloadedState, enhancer) {
   }
 
   function subscribe(listener) {
-    let isSubscribed = true;
+    let isSubscribed = true; // 是否已订阅
     currentListeners.push(listener);
-    // 取消监听方法
     return function unSubscribe() {
       if (!isSubscribed) return;
       isSubscribed = false;
@@ -35,7 +35,7 @@ export default function createStore(reducer, preloadedState, enhancer) {
     }
     if (typeof action.type === 'undefined') throw new Error(`动作不能一个值为undefined的type属性`);
     currentState = reducer(currentState, action);
-    // 批量派发监听
+    // 批量派发监听回调
     currentListeners.forEach((listener) => listener());
     return action;
   }

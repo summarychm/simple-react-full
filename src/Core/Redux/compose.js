@@ -1,8 +1,11 @@
-// 组合函数,可用于applyMiddleware和enhancer的增强
+/** 组合函数,将middleware层层嵌套包裹起来,供外层调用.
+ * 可用于applyMiddleware和enhancer的增强
+ * @param  {...any} fns middleware集合
+ */
 export default function compose(...fns) {
   if (fns.length === 0) return (arg) => arg; // 返回空函数
   if (fns.length === 1) return fns[0]; // 原样返回
-  // reduce中返回函数,延迟其执行.反向依次嵌套包装middleware
+  // 反向依次嵌套middleware,合成一个洋葱版的中间件函数.首个中间件支持传递多个参数
   return fns.reduce((a, b) => (...args) => a(b(...args)));
 }
 
