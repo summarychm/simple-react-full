@@ -1,4 +1,10 @@
 import React from 'react';
+import Counter from '../Counter';
 export default function(props) {
-  return <div>Home</div>;
+  return (
+    <div>
+      <h1>Home</h1>
+      <Counter />
+    </div>
+  );
 }
