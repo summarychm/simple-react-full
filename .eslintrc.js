@@ -43,5 +43,6 @@ module.exports = {
     'react/jsx-props-no-spreading': 0, // 使用展开运算符批量传递props
     'react/destructuring-assignment': 0,
     'react/jsx-curly-newline': 0,
+    'react/no-children-prop': 0,
   },
 };

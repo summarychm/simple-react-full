@@ -1,17 +1,19 @@
 import React from 'react';
 import ReactRouterContext from './context';
 
+// 在使用hook时出现无法及时获取state的问题,所以先暂时使用类组件
 export default class HashRouter extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       location: {
-        pathname: window.location.hash.slice(1),
+        pathname: window.location.hash.slice(1) || '/',
       },
     };
   }
 
   componentDidMount() {
+    // url变更后更新location信息,更新页面
     window.addEventListener('hashchange', (event) => {
       this.setState((prevState) => ({
         ...prevState,
@@ -41,7 +43,6 @@ export default class HashRouter extends React.Component {
           that.locationState = state;
           window.location.hash = pathname;
         } else {
-          // 就是个字符串
           window.location.hash = to;
         }
       },
@@ -52,12 +53,13 @@ export default class HashRouter extends React.Component {
         history.prompt = null;
       },
     };
-    const routerValue = {
-      location: that.state.location,
-      history,
-    };
     return (
-      <ReactRouterContext.Provider value={routerValue}>
+      <ReactRouterContext.Provider
+        value={{
+          location: that.state.location,
+          history,
+        }}
+      >
         {that.props.children}
       </ReactRouterContext.Provider>
     );

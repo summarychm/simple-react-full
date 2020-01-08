@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { HashRouter as Router, Route, Switch, Link, NavLink } from '@/react-router-dom';
+import { BrowserRouter as Router, Route, Switch, Link, NavLink } from '@/react-router-dom';
 // eslint-disable-next-line import/no-unresolved
 import { Provider } from '@/react-redux';
 
