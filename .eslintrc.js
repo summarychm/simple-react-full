@@ -18,6 +18,7 @@ module.exports = {
   },
   plugins: ['react'],
   rules: {
+    'import/no-unresolved': 0,
     'function-paren-newline': 0,
     'no-confusing-arrow': 0,
     'implicit-arrow-linebreak': 0,
@@ -40,5 +41,7 @@ module.exports = {
     'react/prop-types': 0, // prop-types改为可选
     'react/no-unused-state': 0, // 屏蔽未使用state导致的报错
     'react/jsx-props-no-spreading': 0, // 使用展开运算符批量传递props
+    'react/destructuring-assignment': 0,
+    'react/jsx-curly-newline': 0,
   },
 };

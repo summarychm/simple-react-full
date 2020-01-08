@@ -9,20 +9,20 @@ export default (mapStateToProps, mapDispatchToProps) => (WrappedComponent) => (p
   const { dispatch, getState, subscribe } = useContext(ReactReduxContext);
 
   const [filterStateToProps, setFilterStateToProps] = useState(() => {
-    console.log('mapStateToProps init');
+    // console.log('mapStateToProps init');
     return mapStateToProps ? mapStateToProps(getState(), props) : {};
   });
   const [boundActionCreators] = useState(() => {
-    console.log('mapDispatchToProps init');
+    // console.log('mapDispatchToProps init');
     if (isFunction(mapDispatchToProps)) return mapDispatchToProps(dispatch, props);
     return bindActionCreators(mapDispatchToProps, dispatch);
   });
   useEffect(() => {
-    console.log('useEffect');
+    // console.log('useEffect');
     subscribe(() => {
-      console.log('subscribe');
+      // console.log('subscribe');
       setFilterStateToProps(() => (mapStateToProps ? mapStateToProps(getState(), props) : {}));
     });
-  }, []);
+  }, [getState, props, subscribe]);
   return <WrappedComponent {...props} {...filterStateToProps} {...boundActionCreators} />;
 };

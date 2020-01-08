@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from '@/react-router-dom';
 
 export default function UserList(props) {
-  const [users] = useState(() => JSON.parse(localStorage.getItem('users')) || []);
+  const users = JSON.parse(localStorage.getItem('users')) || [];
   return (
     <ul className="list-group">
       {users.map((user) => (

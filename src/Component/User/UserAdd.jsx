@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { Prompt } from 'react-router-dom';
+import { Prompt } from '@/react-router-dom';
 
 export default function UserAdd(props) {
   const [isBlocking, setIsBLocking] = useState(false);

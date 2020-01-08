@@ -1,5 +1,5 @@
 import React from 'react';
-import { connect } from '../../Core/react-redux';
+import { connect } from '@/react-redux';
 import actions from '../../store/actions/counter';
 
 function Counter(props) {

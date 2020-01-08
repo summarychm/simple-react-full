@@ -1,7 +1,8 @@
 import React from 'react';
 
-import { BrowserRouter as Router, Route, Switch, Link, NavLink } from 'react-router-dom';
-import { Provider } from './Core/react-redux';
+import { HashRouter as Router, Route, Switch, Link, NavLink } from '@/react-router-dom';
+// eslint-disable-next-line import/no-unresolved
+import { Provider } from '@/react-redux';
 
 import store from './store';
 
@@ -49,6 +50,7 @@ export default function App(props) {
                   <Route path="/" exact component={Home} />
                   <Route path="/user" component={User} />
                   <Route path="/login" component={Login} />
+                  {/* <Route path="/profile" component={Profile} /> */}
                   <Protected path="/profile" component={Profile} />
                 </Switch>
               </div>
