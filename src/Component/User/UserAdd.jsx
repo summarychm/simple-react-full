@@ -24,7 +24,13 @@ export default function UserAdd(props) {
   }
   return (
     <form onSubmit={handleSubmit}>
-      <Prompt when={isBlocking} message={(location) => `你要离开${location.pathname}么?`} />
+      <Prompt
+        when={isBlocking}
+        message={(location) => {
+          // debugger;
+          return `你要离开${location.pathname}么?`;
+        }}
+      />
       <label>
         用户名:
         <input

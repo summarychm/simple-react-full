@@ -1,70 +1,65 @@
-import React, { useState, useEffect } from 'react';
-import RouterContext from './context';
-// const locationState = null;
+import React from 'react';
+import ReactRouterContext from './context';
 
-export default function HashRouter({ children }) {
-  // push是异步所以使用state缓存结果
-  const [locationState, setLocationState] = useState();
-  const [blockMsg, setBlockMsg] = useState();
-  const [routerState, setRouterState] = useState(() => {
-    console.log('HashRouter -> routerState init', window.location.hash);
-    const data = {
-      history: {
-        push(to) {
-          console.log('HashRouter push');
-          if (blockMsg) {
-            const allow = window.confirm(blockMsg(locationState.location));
-            if (!allow) return;
-          }
-          if (typeof to === 'string') window.location.hash = to;
-          else {
-            setLocationState(() => to.state);
-            window.location.hash = to.pathname;
-          }
-        },
-        block(prompt) {
-          console.log('block');
-          setBlockMsg(() => prompt);
-        },
-        unblock() {
-          console.log('unblock');
-          setBlockMsg(null);
-        },
+export default class HashRouter extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      location: {
+        pathname: window.location.hash.slice(1),
       },
-      location: { pathname: window.location.hash.slice(1) },
     };
-    return data;
-  });
-  useEffect(() => {
-    console.log('HashRouter -> useEffect', routerState);
-    function hashChangeFn() {
-      const location = {
-        ...routerState.location,
-        pathname: window.location.hash.slice(1) || '/',
-        state: locationState,
-      };
-      const history = {
-        ...routerState.history,
-        location,
+  }
 
-        // createHref(params) {
-        //   return params;
-        // },
-      };
-      setRouterState(() => ({
-        ...routerState,
-        location,
-        history,
+  componentDidMount() {
+    window.addEventListener('hashchange', (event) => {
+      this.setState((prevState) => ({
+        ...prevState,
+        location: {
+          ...prevState.location,
+          pathname: window.location.hash.slice(1) || '/',
+          state: this.locationState,
+        },
       }));
-    }
-    window.addEventListener('hashchange', hashChangeFn);
-    window.location.hash = window.location.hash || '/'; // 初始化hash
+    });
+    window.location.hash = window.location.hash || '/';
+  }
 
-    return function clearHashChange() {
-      console.log('HashRouter -> clearHashChange', routerState);
-      window.removeEventListener('hashchange', hashChangeFn);
+  render() {
+    const that = this;
+    const history = {
+      location: this.state.location,
+      push(to) {
+        if (history.prompt) {
+          const target = typeof to === 'string' ? { pathname: to } : to;
+          const yes = window.confirm(history.prompt(target));
+          if (!yes) return;
+        }
+        if (typeof to === 'object') {
+          // 传的是一个对象 {pathname,state}
+          const { pathname, state } = to;
+          that.locationState = state;
+          window.location.hash = pathname;
+        } else {
+          // 就是个字符串
+          window.location.hash = to;
+        }
+      },
+      block(prompt) {
+        history.prompt = prompt;
+      },
+      unblock() {
+        history.prompt = null;
+      },
     };
-  }, []);
-
-  return <RouterContext.Provider value={routerState}>{children}</RouterContext.Provider>;
+    const routerValue = {
+      location: that.state.location,
+      history,
+    };
+    return (
+      <ReactRouterContext.Provider value={routerValue}>
+        {that.props.children}
+      </ReactRouterContext.Provider>
+    );
+  }
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, Route } from '@/react-router-dom';
+import { Link, Route, Redirect } from '@/react-router-dom';
 import UserAdd from './UserAdd';
 import UserDetail from './UserDetail';
 import UserList from './UserList';
@@ -21,6 +21,7 @@ export default function(props) {
         <Route path="/user/add" component={UserAdd} />
         <Route path="/user/list" component={UserList} />
         <Route path="/user/detail/:id" component={UserDetail} />
+        <Redirect to="/user/list" from="/user" />
       </div>
     </div>
   );
