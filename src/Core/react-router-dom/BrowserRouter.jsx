@@ -1,5 +1,16 @@
+/* eslint-disable */
 import React, { useState, useEffect } from 'react';
 import ReactRouterContext from './context';
+
+// !重写history.pushState方法,用于触发push事件
+!(function mock(history) {
+  const { pushState } = history; // 缓存原始pushState方法
+  history.pushState = function(state, title, url) {
+    // 调用自定义pushState方法
+    if (typeof window.onpushstate === 'function') window.onpushstate(state, url);
+    return pushState.apply(history, arguments);
+  };
+})(window.history);
 
 export default function BrowserRouter(props) {
   const [currentState, setCurrentState] = useState({ location: { pathname: '/' } });
@@ -22,6 +33,13 @@ export default function BrowserRouter(props) {
     unblock() {
       history.promptFn = null;
     },
+    createHref(to) {
+      let href = '';
+      if (typeof to === 'object') href += to.pathname;
+      else if (typeof to === 'string') href += to;
+      else href += '/';
+      return href;
+    },
   };
   const routerValue = {
     location: currentState.location,
@@ -29,17 +47,6 @@ export default function BrowserRouter(props) {
   };
 
   useEffect(() => {
-    /* eslint-disable */
-    // !重写history.pushState方法,用于触发push事件
-    !(function mock(history) {
-      const pushState = history.pushState; // 缓存原始pushState方法
-      history.pushState = function(state, title, url) {
-        // 调用自定义pushState方法
-        if (typeof window.onpushstate === 'function') window.onpushstate(state, url);
-        return pushState.apply(history, arguments);
-      };
-    })(window.history);
-
     window.onpushstate = (state, pathname) => {
       setCurrentState({
         location: {

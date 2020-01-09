@@ -1,4 +1,4 @@
-import { push } from '@/connected-react-router';
+// import { push } from '@/connected-react-router';
 import * as types from '../action-type/counter';
 
 export default {
@@ -23,7 +23,7 @@ export default {
       type: types.MINUS,
     };
   },
-  go(path) {
-    return push(path);
-  },
+  // go(path) {
+  //   return push(path);
+  // },
 };

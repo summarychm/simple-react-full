@@ -1,15 +1,12 @@
-# 手写实现简易的 react 全家桶组件
+## 手写简易 React 全家桶
 
-基于 create-react-app 实现 react 全家桶组件
+## TODO LIST
 
-# TODO LIST
-
-- [ ] Redux
-  - [ ] redux-logger
-  - [ ] redux-promise
-  - [ ] redux-thunk
+- [x] Redux
+  - [x] redux-logger
+  - [x] redux-promise
+  - [x] redux-thunk
   - [ ] redux-saga
-- [ ] React-Redux
-- [ ] React-Router
-- [ ] connected-react-router
-- [ ]
+- [x] React-Redux
+- [x] React-Router-DOM
+- [x] connected-react-router

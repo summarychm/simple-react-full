@@ -1,12 +1,10 @@
 import React from 'react';
-import { Route, Switch, Link, NavLink } from 'react-router-dom';
-import { Provider } from 'react-redux';
-import { ConnectedRouter } from '@/connected-react-router';
-
-// eslint-disable-next-line import/no-unresolved
+import { BrowserRouter as Router, Route, Switch, Link, NavLink } from '@/react-router-dom';
+import { Provider } from '@/react-redux';
+// import { ConnectedRouter } from '@/connected-react-router';
+// import history from './history';
 
 import store from './store';
-import history from './history';
 
 import Home from './Component/Home';
 import User from './Component/User';
@@ -17,7 +15,8 @@ import Protected from './Component/Protected';
 export default function App(props) {
   return (
     <Provider store={store}>
-      <ConnectedRouter history={history}>
+      {/* <ConnectedRouter history={history}> */}
+      <Router>
         <>
           <div className="navbar navbar-inverse">
             <div className="container-fluid">
@@ -59,7 +58,8 @@ export default function App(props) {
             </div>
           </div>
         </>
-      </ConnectedRouter>
+      </Router>
+      {/* </ConnectedRouter> */}
     </Provider>
   );
 }

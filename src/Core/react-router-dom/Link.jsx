@@ -11,9 +11,8 @@ export default function Link(props) {
         e.preventDefault();
         history.push(to);
       }}
-      href="#"
+      href={history.createHref(props.to)}
     >
-      {/* href={history.createHref(to)} */}
       {children}
     </a>
   );

@@ -19,7 +19,7 @@ export default (mapStateToProps, mapDispatchToProps) => (WrappedComponent) => (p
   });
   useEffect(() => {
     // console.log('useEffect');
-    subscribe(() => {
+    return subscribe(() => {
       // console.log('subscribe');
       setFilterStateToProps(() => (mapStateToProps ? mapStateToProps(getState(), props) : {}));
     });

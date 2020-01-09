@@ -52,6 +52,13 @@ export default class HashRouter extends React.Component {
       unblock() {
         history.prompt = null;
       },
+      createHref(to) {
+        let href = '#';
+        if (typeof to === 'object') href += to.pathname;
+        else if (typeof to === 'string') href += to;
+        else href += '/';
+        return href;
+      },
     };
     return (
       <ReactRouterContext.Provider
