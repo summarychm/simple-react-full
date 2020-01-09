@@ -1,10 +1,11 @@
+import { push } from '@/connected-react-router';
 import * as types from '../action-type/counter';
 
 export default {
   add(args) {
     return {
       type: types.ADD,
-      ...args,
+      payload: args.payload || 1,
     };
   },
   thunkAdd(ms) {
@@ -14,12 +15,15 @@ export default {
         dispatch({
           type: types.ADD,
         });
-      }, ms || 100);
+      }, ms || 1000);
     };
   },
   minus() {
     return {
       type: types.MINUS,
     };
+  },
+  go(path) {
+    return push(path);
   },
 };

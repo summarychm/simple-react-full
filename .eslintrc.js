@@ -18,6 +18,7 @@ module.exports = {
   },
   plugins: ['react'],
   rules: {
+    'consistent-return': 0,
     'import/no-unresolved': 0,
     'function-paren-newline': 0,
     'no-confusing-arrow': 0,

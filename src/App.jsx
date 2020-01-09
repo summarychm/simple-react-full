@@ -1,10 +1,12 @@
 import React from 'react';
+import { Route, Switch, Link, NavLink } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import { ConnectedRouter } from '@/connected-react-router';
 
-import { BrowserRouter as Router, Route, Switch, Link, NavLink } from '@/react-router-dom';
 // eslint-disable-next-line import/no-unresolved
-import { Provider } from '@/react-redux';
 
 import store from './store';
+import history from './history';
 
 import Home from './Component/Home';
 import User from './Component/User';
@@ -15,7 +17,7 @@ import Protected from './Component/Protected';
 export default function App(props) {
   return (
     <Provider store={store}>
-      <Router>
+      <ConnectedRouter history={history}>
         <>
           <div className="navbar navbar-inverse">
             <div className="container-fluid">
@@ -57,7 +59,7 @@ export default function App(props) {
             </div>
           </div>
         </>
-      </Router>
+      </ConnectedRouter>
     </Provider>
   );
 }

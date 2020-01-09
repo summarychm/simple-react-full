@@ -1,9 +1,16 @@
-import { applyMiddleware, createStore } from '../Core/redux';
+import { applyMiddleware, createStore } from '@/redux';
 // import reduxLogger from '../Core/redux-logger';
-import reduxPromise from '../Core/redux-promise';
-import reduxThunk from '../Core/redux-thunk';
+import reduxPromise from '@/redux-promise';
+import reduxThunk from '@/redux-thunk';
+import { routerMiddleware } from '@/connected-react-router';
+
 import reducer from './reducers';
 
-const store = createStore(reducer, applyMiddleware(reduxPromise, reduxThunk));
+import history from '../history';
+
+const store = createStore(
+  reducer,
+  applyMiddleware(routerMiddleware(history), reduxPromise, reduxThunk),
+);
 // const store = createStore(reducer, applyMiddleware(reduxPromise, reduxThunk, reduxLogger));
 export default store;

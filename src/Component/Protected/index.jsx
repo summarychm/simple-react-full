@@ -1,5 +1,5 @@
 import React from 'react';
-import { Redirect, Route } from '@/react-router-dom';
+import { Redirect, Route } from 'react-router-dom';
 
 export default function Protected(props) {
   const { component: Component, path } = props;
